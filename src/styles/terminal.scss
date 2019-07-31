@@ -1,0 +1,18 @@
+input[type="text"] {
+    background: inherit;
+    border: none;
+    outline: none;
+    cursor: text;
+    color: $fontColor;
+    font-size: 1em;
+    caret-color: $breadCrumbColor;
+    margin-top: 5px;
+}
+
+.terminal {
+    position: sticky;
+    bottom: 0;
+    padding: 20px 0 10px 0;
+    overflow-x: auto;
+    width: 100%;
+}

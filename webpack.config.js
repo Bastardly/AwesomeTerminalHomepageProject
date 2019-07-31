@@ -13,9 +13,12 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 
-	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({
-		template: path.resolve(__dirname, './index.html')
-	})],
+	plugins: [
+		new webpack.ProgressPlugin(),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, 'index.html')
+		})
+	],
 
 	module: {
 		rules: [
@@ -30,6 +33,14 @@ module.exports = {
 					},
 				},
 				exclude: [/node_modules/],
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					"style-loader", // creates style nodes from JS strings
+					"css-loader", // translates CSS into CommonJS
+					"sass-loader" // compiles Sass to CSS, using Node Sass by default
+				]
 			}
 		],
 	},
@@ -51,7 +62,8 @@ module.exports = {
 	},
 
 	devServer: {
-		open: false
+		open: false,
+		historyApiFallback: true,
 	},
 
 	resolve: {

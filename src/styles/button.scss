@@ -1,0 +1,18 @@
+// @import 'colors.scss';
+
+button {
+    background: inherit;
+    border: none;
+    font-size: 1em;
+    color: $linkColor;
+    cursor: pointer;
+}
+
+button:hover {
+    color: $linkHoverColor;
+}
+
+button:disabled {
+    color: $disabledColor;
+    text-decoration: line-through;
+}

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { getHashAndQuery } from './cd'
 
 describe('Commands', function() {
@@ -8,27 +7,27 @@ describe('Commands', function() {
         it('should return url Hash correctly', function() {
             const url = 'path/subpath#meHash'
             const { hash, query } = getHashAndQuery(url)
-            expect(hash).to.equal('meHash');
-            expect(query).to.equal('');
+            expect(hash).toBe('meHash');
+            expect(query).toBe('');
         });
         
         it('should return url Query correctly', function() {
             const url = 'path/subpath?me=question'
             const { hash, query } = getHashAndQuery(url)
-            expect(hash).to.equal('');
-            expect(query).to.equal('me=question');
+            expect(hash).toBe('');
+            expect(query).toBe('me=question');
         });
         it('should get url Hash And Query correctly', function() {
             const url = 'path/subpath#meHash?me=question'
             const { hash, query } = getHashAndQuery(url)
-            expect(hash).to.equal('meHash');
-            expect(query).to.equal('me=question');
+            expect(hash).toBe('meHash');
+            expect(query).toBe('me=question');
         });
         it('should get url Hash And Query correctly when written reverse', function() {
             const url = 'path/subpath?me=question#meHash'
             const { hash, query } = getHashAndQuery(url)
-            expect(hash).to.equal('meHash');
-            expect(query).to.equal('me=question');
+            expect(hash).toBe('meHash');
+            expect(query).toBe('me=question');
         });
     });
   });

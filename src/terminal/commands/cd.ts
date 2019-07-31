@@ -9,10 +9,11 @@ function buildNewPath(path: string) {
 //     return updatedPath;
 }
 
-function getBetweenRegex(hashIsbeforeQuery: boolean): string {
-    const firstChar = hashIsbeforeQuery ? '#' : '?'
-    const lastChar = hashIsbeforeQuery ? '?' : '#'
-    return `(?<=${firstChar}).*?(?=${lastChar})`
+// I fucking hate regex, this people can understand and will work wil all chars!
+function getMiddelMatch(lastElement: string, hashIsbeforeQuery: boolean, hashIndex: number, queryIndex: number): string {
+    const first = hashIsbeforeQuery ? hashIndex : queryIndex;
+    const last = !hashIsbeforeQuery ? hashIndex : queryIndex;
+    return lastElement.slice(first + 1, last);
 }
 
 type HashAndQuery = {
@@ -24,13 +25,12 @@ function handleBothHashAndQuery(lastElement: string, hashIndex: number, queryInd
     let hash = '';
     let query = '';
     const hashIsbeforeQuery = hashIndex < queryIndex;
-    const matches = lastElement.match(getBetweenRegex(hashIsbeforeQuery))
-    const firstMatch = matches && matches[0] || '';
+    const match = getMiddelMatch(lastElement, hashIsbeforeQuery, hashIndex, queryIndex)
     if (hashIsbeforeQuery) {
-        hash = firstMatch;
+        hash = match;
         query = lastElement.split('?')[1]
     } else {
-        query = firstMatch;
+        query = match;
         hash = lastElement.split('#')[1]
     }
     return {hash, query};
@@ -38,7 +38,7 @@ function handleBothHashAndQuery(lastElement: string, hashIndex: number, queryInd
 
 
 // wakkawakka/test#hashi?search=bobbyOlsen || wakkawakka/test?search=bobbyOlsen#haaash
-export function getHashAndQuery(url: string): HashAndQuery & {lastElement: string} {
+export function getHashAndQuery(url: string): HashAndQuery {
     const lastElement = url.split('/').pop() || ''
     const hashIndex = lastElement.indexOf('#');
     const queryIndex = lastElement.indexOf('?');
@@ -48,23 +48,18 @@ export function getHashAndQuery(url: string): HashAndQuery & {lastElement: strin
     let query = '';
 
     if (!hasQuery && !hasHash) {
-        return { hash, query, lastElement}
+        return { hash, query}
     } else if (hasHash && hasQuery) {
-        return ({
-            ...handleBothHashAndQuery(lastElement, hashIndex, queryIndex),
-            lastElement,
-        })
+        return handleBothHashAndQuery(lastElement, hashIndex, queryIndex)
     } else if (hasHash && !hasQuery) {
         return {
             query,
             hash: lastElement.split('#')[1],
-            lastElement,
         }
     } else {
         return {
             query: lastElement.split('?')[1],
             hash,
-            lastElement,
         }
     }
 }
@@ -74,7 +69,7 @@ export default function cd(elements: string[], goodiebag: GoodiebagProps) {
 
     // validateUrl ## ??
 
-    const { hash, query, lastElement } = getHashAndQuery(url)
+    const { hash, query } = getHashAndQuery(url)
 
     if (!url) url = '/';
     if (url.slice(0,2) === '..') {

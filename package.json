@@ -7,7 +7,7 @@
     "ts-mocha": "./bin/ts-mocha"
   },
   "scripts": {
-    "test": "ts-mocha ./ ./src/**/*.spec.ts",
+    "test": "ts-mocha ./ ./src/**/*.spec.tsx",
     "build": "webpack",
     "start": "webpack-dev-server"
   },

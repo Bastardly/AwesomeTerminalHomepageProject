@@ -38,7 +38,7 @@ function handleBothHashAndQuery(lastElement: string, hashIndex: number, queryInd
 
 
 // wakkawakka/test#hashi?search=bobbyOlsen || wakkawakka/test?search=bobbyOlsen#haaash
-function getHashAndQuery(url: string): HashAndQuery & {lastElement: string} {
+export function getHashAndQuery(url: string): HashAndQuery & {lastElement: string} {
     const lastElement = url.split('/').pop() || ''
     const hashIndex = lastElement.indexOf('#');
     const queryIndex = lastElement.indexOf('?');
@@ -97,5 +97,6 @@ export default function cd(elements: string[], goodiebag: GoodiebagProps) {
     // valider for om path er skrevet korrekt fx. blog => /blog
     // changeCurrentRoute(path)
     const routeData = getRouteData(url, hash, query)
+    // @ts-ignore
     goodiebag.changeRouteData(routeData)
 }

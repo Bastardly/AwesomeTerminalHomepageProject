@@ -17,11 +17,15 @@ export type GoodiebagProps = {
     setErrorMsg: (msg?: string | ReactNode) => void;
 }
 
+export function getElements(query: string): string[] {
+    return query.trim().split(' ');
+}
+
 export function runQuery(query: string, goodieBag: GoodiebagProps) {
     if (!query || !query.length) return;
-    const elements: string[] = query.trim().split(' ');
+    const elements = getElements(query);
     const command = elements[0];
-    const commandMethod = getCommandMethod(command);
+    const commandMethod = getCommandMethod(command); // e.g. cd or ls
     if (commandMethod) {
         commandMethod(elements, goodieBag)
     } else {
@@ -34,7 +38,7 @@ export function getFocus () {
     const activeElement = document.activeElement;
     const TheInputTerminal = document.getElementById(TerminalId) as HTMLElement;
     if (activeElement === TheInputTerminal) return;
-    TheInputTerminal.focus();
+    TheInputTerminal && TheInputTerminal.focus();
 }
 
 export default function Terminal() {

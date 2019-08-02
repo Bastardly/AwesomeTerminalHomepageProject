@@ -64,10 +64,42 @@ export function getHashAndQuery(url: string): HashAndQuery {
     }
 }
 
+function splitCount(char: string, str: string): number {
+    return str.split(char).length;
+}
+
+function noHashOrQueriesInMiddleElements(char: string, urlElementsWithoutLast: string[]) {
+    return urlElementsWithoutLast.some(el => el.indexOf(char) !== -1)
+}
+
+function validateUrl(url: string): string {
+    const urlElements = url.split('/');
+    urlElements.pop() // Removes last element
+    const errors: string[] = [
+        splitCount('#', url) > 2 ? "You can only use one hash tag." : '',
+        splitCount('?', url) > 2 ? "You can only use one query tag." : '',
+        noHashOrQueriesInMiddleElements('#', urlElements) ? "You can only use a hash on the last item." : '',
+        noHashOrQueriesInMiddleElements('?', urlElements) ? "You can only use a query on the last item." : '',
+    ]
+
+    return errors.reduce((errorMsg, error) => {
+        if(!error.length) {
+            return errorMsg
+        }
+        errorMsg = errorMsg + error + ' ';
+        return errorMsg;
+    }, '').trim();
+}
+
 export default function cd(elements: string[], goodiebag: GoodiebagProps) {
     let url = elements[1];
 
     // validateUrl ## ??
+    const errorMsg = validateUrl(url)
+    if (errorMsg && errorMsg.length) {
+        goodiebag.setErrorMsg(errorMsg)
+        return;
+    }
 
     const { hash, query } = getHashAndQuery(url)
 
@@ -79,10 +111,14 @@ export default function cd(elements: string[], goodiebag: GoodiebagProps) {
     if (url.length > 1) {
         // blog should be /blog
         if (url.startsWith('/')) {
+            // make into an absolute path and start route from route
             url = '/' + url
         }
         if (url.endsWith('/')) {
-            url = url.slice(0, url.length -1) // /blog/ should be /blog
+            url = url.slice(0, url.length -1) // blog/ should be /blog
+        }
+        if (url.indexOf('/') === -1) {
+            url = '/' + url // blog should be /blog
         }
     }
 

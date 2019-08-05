@@ -17,7 +17,6 @@ function createRouteDataFromAbsolutePath(path: string): RouteData {
     elements.pop(); // removes old last element with hash and query
     elements.push(lastElement) // adds clean element
     const absolutePath = stitchAbsolutePathTogether(elements) || '/'
-    console.log('Absolute Path *******', absolutePath)
     return {
         ...getRouteData(absolutePath),
         data: {

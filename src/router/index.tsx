@@ -21,7 +21,7 @@ export type RouteData = {
   title: string;
   url: string;
   data: {
-      hash: string | number,
+      hash: string,
       query: string;
   }
 };

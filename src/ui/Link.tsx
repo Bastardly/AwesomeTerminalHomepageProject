@@ -11,9 +11,8 @@ interface LinkProps {
 }
 
 export default function Link({name, path, hash, query, disabled}: LinkProps) {
-    const { changeRouteData, routeData } = useContext(routeContext)
-    const isDisabled = disabled || path === routeData.url;
+    const { changeRouteData } = useContext(routeContext)
     const handleClick = useCallback(() => changeRouteData(getRouteData(path, hash, query)), [path, hash, query])
 
-    return <button onClick={handleClick} disabled={isDisabled}>{name}</button>
+    return <button onClick={handleClick} disabled={disabled}>{name}</button>
 }

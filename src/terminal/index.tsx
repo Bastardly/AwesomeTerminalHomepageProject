@@ -1,6 +1,6 @@
 import React, { useContext, FormEvent, useCallback, useState, useRef, ReactNode } from 'react';
 import { routeContext } from '../App';
-import BreadCrumb from '../ui/Breadcrumb';
+import BreadCrumb from '../ui/BreadCrumb/Breadcrumb';
 import ErrorMsg from '../ui/ErrorMsg';
 import useEventListener from '../hooks/useEventListener';
 import getCommandMethod from './getCommandMethod';
@@ -52,11 +52,10 @@ export default function Terminal() {
     useEventListener('keypress', getFocus, window)
 
     const handleInput = useCallback(() => {
-        // @ts-ignore - We got this covered I think!
         if (errorMsg) {
             setErrorMsg(undefined);
         }
-        // @ts-ignore
+        // @ts-ignore No, at this point it can never be null. TS you're drunk
         const value: string = ref.current && ref.current.value || '';
         setInputValue(value);        
     }, [inputValue])
@@ -101,7 +100,7 @@ export default function Terminal() {
     }
 
     return <div className="terminal">
-        <BreadCrumb />
+        <BreadCrumb routeData={routeData} />
         <form onSubmit={handleSubmit}>
             {'> '} <input ref={ref} id={TerminalId} type="text" onKeyUp={handleKeyUp} onKeyPress={handleInput} autoFocus autoComplete="off"/>
         </form>

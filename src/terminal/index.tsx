@@ -3,7 +3,7 @@ import { routeContext } from '../App';
 import BreadCrumb from '../ui/BreadCrumb/Breadcrumb';
 import ErrorMsg from '../ui/ErrorMsg';
 import useEventListener from '../hooks/useEventListener';
-import getCommandMethod from './getCommandMethod';
+import runCommand from './commands';
 import { RouteData } from '../router';
 
 type StrFunc = (path: string) => void;
@@ -11,28 +11,25 @@ type StrFunc = (path: string) => void;
 const TerminalId = 'TheInputTerminal'
 const consoleHistory: string[] = [];
 
+type TerminalProps = {
+    changeHideRoute:(val: boolean) => void,
+    hideRoute: boolean,
+}
+
 export type GoodiebagProps = {
     routeData: RouteData,
     changeRouteData: (val: RouteData) => void,
     setInputValue: StrFunc,
     setErrorMsg: (msg?: string | ReactNode) => void;
-}
-
-export function getElements(query: string): string[] {
-    return query.trim().split(' ');
-}
+} & TerminalProps
 
 export function runQuery(query: string, goodieBag: GoodiebagProps) {
     if (!query || !query.length) return;
-    const elements = getElements(query);
-    const command = elements[0];
-    const commandMethod = getCommandMethod(command); // e.g. cd or ls
-    if (commandMethod) {
-        commandMethod(elements, goodieBag)
-    } else {
-        const errorMsg = `${command}: The command '${command}' does not exist. Type 'help' for assistance`;
-        goodieBag.setErrorMsg(errorMsg);
+
+    if (goodieBag.hideRoute) {
+        goodieBag.changeHideRoute(false)
     }
+    runCommand(query, goodieBag);
 }
 
 export function getFocus () {
@@ -42,7 +39,7 @@ export function getFocus () {
     TheInputTerminal && TheInputTerminal.focus();
 }
 
-export default function Terminal() {
+export default function Terminal({changeHideRoute, hideRoute}: TerminalProps) {
     const ref = useRef(null);
     const [inputValue, setInputValue] = useState('');
     const [errorMsg, setErrorMsg] = useState();
@@ -94,6 +91,8 @@ export default function Terminal() {
             changeRouteData,
             setInputValue,
             setErrorMsg,
+            changeHideRoute,
+            hideRoute
         }
         runQuery(inputValue, goodieBag)
         updateTerminal('');

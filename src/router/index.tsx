@@ -50,6 +50,7 @@ const NotFound = lazy(() => import("../404"));
 
 type TargetRouteProps = {
     url: string,
+    hideRoute: boolean
 }
 
 function Routes({url}: {url: string}): ReactElement {
@@ -60,11 +61,11 @@ function Routes({url}: {url: string}): ReactElement {
   }
 }
 
-export default function TargetRoute({url}: TargetRouteProps): ReactElement {
+export default function TargetRoute({url, hideRoute}: TargetRouteProps): ReactElement {
     return (
       <Fragment>
         <Suspense fallback={<Fallback />}>
-            <Routes url={url} />
+          {!hideRoute && <Routes url={url} /> }
         </Suspense>
       </Fragment>
     );

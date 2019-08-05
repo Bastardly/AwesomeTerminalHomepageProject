@@ -1,7 +1,7 @@
 import cd from './cd';
 import getHashAndQuery from './cd/getHashAndQuery'
 import { RouteData } from '../../router';
-import { getElements } from '../../terminal';
+import { getElements } from '../../terminal/commands';
 
 type RunCdQuery = {
     routeData: RouteData;

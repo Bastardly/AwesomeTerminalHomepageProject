@@ -19,12 +19,13 @@ export const routeContext: RouteContext = createContext({
 
 export function App() {
     const [routeData, changeRouteData] = useState(initialRouteData)
+    const [hideRoute, changeHideRoute] = useState(false)
     useRouter(routeData, changeRouteData)
 
     return (
         <routeContext.Provider value={{changeRouteData, routeData}}>
-            <TargetRoute url={routeData.url} />
-            <TerminalInput />
+            <TargetRoute hideRoute={hideRoute} url={routeData.url} />
+            <TerminalInput hideRoute={hideRoute} changeHideRoute={changeHideRoute} />
         </routeContext.Provider>
     )
 }

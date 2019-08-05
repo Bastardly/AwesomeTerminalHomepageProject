@@ -32,10 +32,11 @@ export default function BreadCrumb({routeData} : BreadCrumbProps) {
 
 
     return (
-        <span className="breadCrumb">SITE <Link name="home" path="/" />:/
+        <div className="breadCrumb"> ~<Link name={window.location.hostname} path="/" />/
             {paths.map(path => <Link key={path.url} name={path.name} path={path.url} />)}
             {hash && hash.length > 0 && `#${hash}`}
             {query && query.length > 0 && `?${query}`}
-        </span>
+            >
+        </div>
     )
 }

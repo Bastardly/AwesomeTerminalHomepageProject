@@ -101,7 +101,7 @@ export default function Terminal({changeHideRoute, hideRoute}: TerminalProps) {
     return <div className="terminal">
         <BreadCrumb routeData={routeData} />
         <form onSubmit={handleSubmit}>
-            {'> '} <input ref={ref} id={TerminalId} type="text" onKeyUp={handleKeyUp} onKeyPress={handleInput} autoFocus autoComplete="off"/>
+            {'$ '} <input ref={ref} id={TerminalId} type="text" onKeyUp={handleKeyUp} onKeyPress={handleInput} autoFocus autoComplete="off"/>
         </form>
         <ErrorMsg errorMsg={errorMsg} />
     </div>

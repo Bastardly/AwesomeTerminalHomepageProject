@@ -4,6 +4,7 @@ import BreadCrumb from '../ui/Breadcrumb';
 import ErrorMsg from '../ui/ErrorMsg';
 import useEventListener from '../hooks/useEventListener';
 import getCommandMethod from './getCommandMethod';
+import { RouteData } from '../router';
 
 type StrFunc = (path: string) => void;
 
@@ -11,8 +12,8 @@ const TerminalId = 'TheInputTerminal'
 const consoleHistory: string[] = [];
 
 export type GoodiebagProps = {
-    routeData: string,
-    changeRouteData: StrFunc,
+    routeData: RouteData,
+    changeRouteData: (val: RouteData) => void,
     setInputValue: StrFunc,
     setErrorMsg: (msg?: string | ReactNode) => void;
 }

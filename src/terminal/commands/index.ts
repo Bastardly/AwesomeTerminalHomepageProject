@@ -2,8 +2,6 @@ import cd from './cd';
 import clear from './clear';
 import { GoodiebagProps } from '..';
 
-
-
 interface Method {
     method: (elements: string[], goodiebag: GoodiebagProps) => void,
     header: string,
@@ -32,7 +30,8 @@ export const methods: Methods = {
     }
 }
 
-export default function getMethodsData(query: string, goodiebag: GoodiebagProps) {
+export default function runCommand(query: string, goodiebag: GoodiebagProps) {
+    if (!query || !query.length) return;
     const elements = getElements(query);
     const commandName = elements[0]; // e.g. cd, clear or ls
     const command = methods[commandName]; 

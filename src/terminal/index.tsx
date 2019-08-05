@@ -1,35 +1,18 @@
 import React, { useContext, FormEvent, useCallback, useState, useRef, ReactNode } from 'react';
-import { routeContext } from '../App';
+import { appContext, AppContext } from '../App';
 import BreadCrumb from '../ui/BreadCrumb/Breadcrumb';
 import ErrorMsg from '../ui/ErrorMsg';
 import useEventListener from '../hooks/useEventListener';
 import runCommand from './commands';
-import { RouteData } from '../router';
 
 type StrFunc = (path: string) => void;
 
 const TerminalId = 'TheInputTerminal'
 const consoleHistory: string[] = [];
 
-type TerminalProps = {
-    changeHideRoute:(val: boolean) => void,
-    hideRoute: boolean,
-}
-
-export type GoodiebagProps = {
-    routeData: RouteData,
-    changeRouteData: (val: RouteData) => void,
+export interface GoodiebagProps extends AppContext {
     setInputValue: StrFunc,
     setErrorMsg: (msg?: string | ReactNode) => void;
-} & TerminalProps
-
-export function runQuery(query: string, goodieBag: GoodiebagProps) {
-    if (!query || !query.length) return;
-
-    if (goodieBag.hideRoute) {
-        goodieBag.changeHideRoute(false)
-    }
-    runCommand(query, goodieBag);
 }
 
 export function getFocus () {
@@ -39,12 +22,17 @@ export function getFocus () {
     TheInputTerminal && TheInputTerminal.focus();
 }
 
-export default function Terminal({changeHideRoute, hideRoute}: TerminalProps) {
+export default function Terminal() {
     const ref = useRef(null);
     const [inputValue, setInputValue] = useState('');
     const [errorMsg, setErrorMsg] = useState();
     const [historyIndex, changeHistoryIndex] = useState(0);
-    const { routeData, changeRouteData } = useContext(routeContext)
+    const {
+        routeData,
+        changeRouteData, 
+        content,
+        changeContent
+    } = useContext(appContext)
 
     useEventListener('keypress', getFocus, window)
 
@@ -91,10 +79,10 @@ export default function Terminal({changeHideRoute, hideRoute}: TerminalProps) {
             changeRouteData,
             setInputValue,
             setErrorMsg,
-            changeHideRoute,
-            hideRoute
-        }
-        runQuery(inputValue, goodieBag)
+            content,
+            changeContent,            
+        } as GoodiebagProps;
+        runCommand(inputValue, goodieBag)
         updateTerminal('');
     }
 

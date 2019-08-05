@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from 'react';
 import { getRouteData } from '../router';
-import { routeContext } from '../App';
+import { appContext } from '../App';
 
 interface LinkProps {
     name: string,
@@ -11,7 +11,7 @@ interface LinkProps {
 }
 
 export default function Link({name, path, hash, query, disabled}: LinkProps) {
-    const { changeRouteData } = useContext(routeContext)
+    const { changeRouteData } = useContext(appContext)
     const handleClick = useCallback(() => changeRouteData(getRouteData(path, hash, query)), [path, hash, query])
 
     return <button onClick={handleClick} disabled={disabled}>{name}</button>

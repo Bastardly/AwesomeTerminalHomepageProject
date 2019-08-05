@@ -1,5 +1,9 @@
-import React, { Suspense, lazy, ReactElement, Fragment } from "react";
+import React, { Suspense, lazy, ReactElement, Fragment, useContext, useEffect, ReactNode, ErrorBoundary } from "react";
 import Fallback from './Fallback'
+import { appContext, Content } from "../App";
+// import Blog from '../pages/Blog'
+// import LandingPage from '../pages/LandingPage'
+// import NotFound from '../404'
 
 type RouteProps = {
   title?: string;
@@ -50,24 +54,33 @@ const NotFound = lazy(() => import("../404"));
 
 type TargetRouteProps = {
     url: string,
-    hideRoute: boolean
 }
 
-function Routes({url}: {url: string}): ReactElement {
+function Routes({url}: {url: string}): ReactNode {
   switch (url) {
-    case "/": return <LandingPage />
-    case "/blog": return <Blog />
-	  default: return <NotFound />
+    case "/": return LandingPage
+    case "/blog": return Blog
+	  default: return NotFound
   }
 }
 
-export default function TargetRoute({url, hideRoute}: TargetRouteProps): ReactElement {
-    return (
-      <Fragment>
+export default function TargetRoute({url}: TargetRouteProps): ReactElement {
+  const { content, changeContent } = useContext(appContext)
+
+  useEffect(() => {
+    changeContent([...content,  Routes({url})])
+  }, [url])
+
+  return <Fragment>
+    {content.map((Component: Content, index: number) => {
+      return (
+        <Fragment key={index}>
         <Suspense fallback={<Fallback />}>
-          {!hideRoute && <Routes url={url} /> }
+          <Component />
         </Suspense>
       </Fragment>
-    );
+      )
+    })}
+  </Fragment>
   }
 

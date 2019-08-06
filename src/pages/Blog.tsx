@@ -1,12 +1,13 @@
 
-import React, { Fragment } from 'react';
-
+import React from 'react';
+import ContentWrapper from '../terminal/ContentWrapper';
 export default function Blog() {
     return (
-        <Fragment>
-            <h1>Blog</h1>
+        <ContentWrapper
+            header="Blog"
+        >
             <div>This is my blog</div>
 
-        </Fragment>
+        </ContentWrapper>
     )
 }

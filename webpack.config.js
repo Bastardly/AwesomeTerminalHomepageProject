@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const src = path.resolve(__dirname, 'src')
 
 module.exports = {
 	mode: 'development',
@@ -20,11 +21,12 @@ module.exports = {
 		})
 	],
 
+
 	module: {
 		rules: [
 			{
 				test: /.(js|ts|tsx)?$/,
-				include: [path.resolve(__dirname, 'src')],
+				include: [src],
 				use: {
 					loader: 'babel-loader',
 					options: {
@@ -67,6 +69,9 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
+		extensions: ['.tsx', '.ts', '.js'],
+		alias: {
+			src,
+		},
 	}
 };

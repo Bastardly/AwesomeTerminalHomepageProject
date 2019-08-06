@@ -1,15 +1,16 @@
 
 import React, { Fragment } from 'react';
 import mockText from '../mockText'
+import ContentWrapper from 'src/terminal/ContentWrapper';
 
 const yolo = '<YOLO />'
 
 export default function LandingPage() {
     return (
-        <Fragment>
-            <h1>Yo Bro! {yolo}</h1>
+        <ContentWrapper
+            header=""
+        >
             <div>{mockText}</div>
-
-        </Fragment>
+        </ContentWrapper>
     )
 }

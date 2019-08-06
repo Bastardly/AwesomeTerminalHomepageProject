@@ -50,7 +50,7 @@ export function updateHistory(routeData: RouteData) {
 // Routes
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const Blog = lazy(() => import("../pages/Blog"));
-const NotFound = lazy(() => import("../404"));
+const NotFound = lazy(() => import("../pages/404"));
 
 type TargetRouteProps = {
     url: string,

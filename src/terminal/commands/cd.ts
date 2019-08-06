@@ -1,5 +1,5 @@
 import { GoodiebagProps } from '..'
-import { getRouteData, RouteData } from '../../router';
+import { getRouteData, RouteData } from 'src/router';
 import validatepath from './cd/validatePath';
 import getHashAndQuery from './cd/getHashAndQuery';
 

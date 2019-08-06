@@ -1,7 +1,7 @@
 import cd from './cd';
 import getHashAndQuery from './cd/getHashAndQuery'
-import { RouteData } from '../../router';
-import { getElements } from '../../terminal/commands';
+import { RouteData } from 'src/router';
+import { getElements } from '.';
 
 type RunCdQuery = {
     routeData: RouteData;
@@ -90,7 +90,7 @@ describe('Commands', function() {
     });
         
     it('should be able to navigate in routes and and add new hash and query', function() {
-        const { routeData } = runCdQuery('cd ../../../blog#newHash?me=works', modifiedRouteData)
+        const { routeData } = runCdQuery('cd ../../../blog#newHash?me=works', modifiedRouteData2)
         expect(routeData.url).toBe('/blog');
         expect(routeData.data.hash).toBe('newHash');
         expect(routeData.data.query).toBe('me=works');

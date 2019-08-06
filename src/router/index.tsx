@@ -1,6 +1,6 @@
-import React, { Suspense, lazy, ReactElement, Fragment, useContext, useEffect, ReactNode, ErrorBoundary } from "react";
+import React, { Suspense, lazy, ReactElement, Fragment, useContext, useEffect, ReactNode } from "react";
 import Fallback from './Fallback'
-import { appContext, Content } from "../App";
+import { appContext } from "../App";
 // import Blog from '../pages/Blog'
 // import LandingPage from '../pages/LandingPage'
 // import NotFound from '../404'
@@ -30,7 +30,7 @@ export type RouteData = {
   }
 };
 
-export function getRouteData(pathname = '', hash = '', query = ''): RouteData {
+export function getRouteData(pathname: string = '', hash: string = '', query: string = ''): RouteData {
   // Let's see if the given url exist.
   const {title = null, url = null} = routes.find(route => route.url === pathname) || {};
   return {
@@ -72,7 +72,7 @@ export default function TargetRoute({url}: TargetRouteProps): ReactElement {
   }, [url])
 
   return <Fragment>
-    {content.map((Component: Content, index: number) => {
+    {content.map((Component: any, index: number) => {
       return (
         <Fragment key={index}>
         <Suspense fallback={<Fallback />}>

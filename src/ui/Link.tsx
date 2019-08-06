@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from 'react';
-import { getRouteData } from '../router';
-import { appContext } from '../App';
+import { getRouteData } from 'src/router';
+import { appContext } from 'src/App';
 
 interface LinkProps {
     name: string,

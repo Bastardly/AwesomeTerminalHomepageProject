@@ -1,25 +1,11 @@
 import React, { Suspense, lazy, ReactElement, Fragment, useContext, useEffect, ReactNode } from "react";
 import Fallback from './Fallback'
 import { appContext } from "../App";
-// import Blog from '../pages/Blog'
-// import LandingPage from '../pages/LandingPage'
-// import NotFound from '../404'
 
 type RouteProps = {
   title?: string;
   url?: string;
 };
-
-export const routes: RouteProps[] = [
-  {
-    title: "My homepage!",
-    url: "/"
-  },
-  {
-    title: "Blog!",
-    url: "/blog"
-  },
-];
 
 export type RouteData = {
   title: string;
@@ -31,7 +17,16 @@ export type RouteData = {
 };
 
 export function getRouteData(pathname: string = '', hash: string = '', query: string = ''): RouteData {
-  // Let's see if the given url exist.
+  const routes = [
+    {
+      title: "My homepage!",
+      url: "/"
+    },
+    {
+      title: "Blog!",
+      url: "/blog"
+    },
+  ] as RouteProps[];
   const {title = null, url = null} = routes.find(route => route.url === pathname) || {};
   return {
       title: title || 'Page not found',

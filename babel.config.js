@@ -1,17 +1,28 @@
 module.exports = function (api) {
     api.cache(true);
+    // const isTest = process.env('test');
+    // const isTest = true;
   
     const presets = [
         [
             "@babel/preset-env",
             {
-              "useBuiltIns": "entry"
+              useBuiltIns: "entry",
+              corejs: 3,
             }
           ],
           "@babel/preset-react",
           "@babel/preset-typescript"
     ];
-    const plugins = ["syntax-dynamic-import"];
+    const plugins = [
+      "syntax-dynamic-import",
+      ["module-resolver", {
+        "root": ["."],
+        "alias": {
+          "src": "./src"
+        }
+      }]
+    ];
   
     return {
       presets,

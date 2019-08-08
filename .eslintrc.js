@@ -1,21 +1,13 @@
 module.exports = {
     parser: "@typescript-eslint/parser",
-    env: {
-        browser: true,
-        node: true,
-        es6: true,
-    },
-    extends: [
-        // "eslint/recommended",
-        "prettier",
-        "plugin:prettier/recommended",
-        "prettier/react",
-        "prettier/@typescript-eslint",
-        "prettier/standard",
-    ],
-    globals: {
-        jest: "writable",
-    },
+    // env: {
+    //     browser: true,
+    //     node: true,
+    //     es6: true,
+    //     commonjs: true,
+    // },
+    extends: ["plugin:prettier/recommended", "prettier", "prettier/react"],
+    plugins: ["@typescript-eslint/eslint-plugin", "prettier", "react-hooks", "prettier/react"],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -24,8 +16,14 @@ module.exports = {
         sourceType: "module",
         // "useJSXTextNode": true, // only false if eslint is v4
     },
-    plugins: ["prettier", "react", "plugin:@typescript-eslint/eslint-plugin"],
     rules: {
-        "prettier/prettier": ["error", { singleQuote: true, parser: "flow" }],
+        "prettier/prettier": "error",
+        "no-console": "error",
+    },
+    settings: {
+        react: {
+            pragma: "React",
+            version: "detect",
+        },
     },
 };

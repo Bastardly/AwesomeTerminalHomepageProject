@@ -13,7 +13,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-    document.body.removeChild(container);
+            document.body.removeChild(container);
     container = null;
 });
 
@@ -22,7 +22,7 @@ window.scrollTo = jest.fn();
 describe("App", () => {
     test("should render", function() {
         act(() => {
-            ReactDOM.render(<App />, container);
+                    ReactDOM.render(<App />, container);
         });
     });
 

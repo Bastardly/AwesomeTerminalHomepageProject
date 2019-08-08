@@ -12,7 +12,7 @@ module.exports = function (api) {
             }
           ],
           "@babel/preset-react",
-          "@babel/preset-typescript"
+                      "@babel/preset-typescript"
     ];
     const plugins = [
       "syntax-dynamic-import",

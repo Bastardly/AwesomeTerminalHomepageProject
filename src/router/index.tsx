@@ -16,7 +16,11 @@ export type RouteData = {
   }
 };
 
-export function getRouteData(pathname: string = '', hash: string = '', query: string = ''): RouteData {
+type TargetRouteProps = {
+  url: string,
+}
+
+export function getRouteData(pathname: string = '/', hash: string = '', query: string = ''): RouteData {
   const routes = [
     {
       title: "My homepage!",
@@ -38,18 +42,10 @@ export function getRouteData(pathname: string = '', hash: string = '', query: st
   }
 }
 
-export function updateHistory(routeData: RouteData) {
-  window.history.pushState(routeData.data, routeData.title, routeData.url)
-}
-
 // Routes
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const Blog = lazy(() => import("../pages/Blog"));
 const NotFound = lazy(() => import("../pages/404"));
-
-type TargetRouteProps = {
-    url: string,
-}
 
 function Routes({url}: {url: string}): ReactNode {
   switch (url) {

@@ -1,6 +1,6 @@
 import { useEffect} from 'react';
 import useEventListener from './useEventListener';
-import { getRouteData, RouteData, updateHistory } from 'src/router'
+import { getRouteData, RouteData } from 'src/router'
 import {getFocus} from '../terminal'
 
 export default function useRouter(routeData: RouteData, changeRouteData: (routeData: RouteData) => void): void {
@@ -11,6 +11,8 @@ export default function useRouter(routeData: RouteData, changeRouteData: (routeD
 
     const {
         url,
+        title,
+        data,
         data: {
             hash,
             query
@@ -18,8 +20,9 @@ export default function useRouter(routeData: RouteData, changeRouteData: (routeD
     } = routeData;
     
     useEffect(() => {
-        updateHistory(routeData);
+        document.title = title;
+        window.history.pushState(data, title, url)
         getFocus()
-    }, [url, hash, query])
+    }, [url, hash, query, title])
 }
 

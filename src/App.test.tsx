@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { getRouteData, RouteData } from "src/router";
+import getRouteData, { RouteData } from "src/router/getRouteData";
 
 import App from "./App";
 

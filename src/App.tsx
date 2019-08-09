@@ -1,7 +1,8 @@
 import React, { Context, useState, createContext, ReactNode } from "react";
-import TargetRoute, { getRouteData, RouteData } from "src/router";
+import getRouteData, { RouteData } from "src/router/getRouteData";
+import TargetRoute from "src/router/index";
 import useRouter from "src/hooks/useRouter";
-import TerminalInput from "src/terminal";
+import TerminalInput from "src/terminal/index";
 
 export interface AppContext extends Context<any> {
     routeData: RouteData;

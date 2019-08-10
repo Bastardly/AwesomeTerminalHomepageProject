@@ -25,7 +25,7 @@ export function getFocus() {
 export default function Terminal() {
     const ref = useRef(null);
     const [inputValue, setInputValue] = useState("");
-    const [errorMsg, setErrorMsg] = useState();
+            const [errorMsg, setErrorMsg] = useState();
     const [historyIndex, changeHistoryIndex] = useState(0);
     const { routeData, changeRouteData, content, changeContent } = useContext(appContext);
 

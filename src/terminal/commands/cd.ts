@@ -13,8 +13,13 @@ function stitchAbsolutePathTogether(elements: string[]) {
 function createRouteDataFromAbsolutePath(path: string): RouteData {
     let elements = path.split("/");
     const lastPathElement = path.split("/").pop() || "";
-    const { hash, query, lastElement } = getHashAndQuery(lastPathElement);
+    let { hash, query, lastElement } = getHashAndQuery(lastPathElement);
     elements.pop(); // removes old last element with hash and query
+    if (lastElement === "") {
+        // For instance, if path is blog/#myHash, last element will be and empty string, therfore we will remove an extra to get the correct one.
+        lastElement = elements.pop() || "";
+    }
+    console.log(lastElement);
     elements.push(lastElement); // adds clean element
     const absolutePath = stitchAbsolutePathTogether(elements) || "/";
     return {

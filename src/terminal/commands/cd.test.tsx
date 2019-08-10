@@ -79,6 +79,11 @@ describe("Commands", function() {
                 "You can only use a hash on the last item. You can only use a query on the last item.",
             );
         });
+        test("should be able to handle /#", function() {
+            const { routeData } = runCdQuery("cd blog/#itWorks");
+            expect(routeData.url).toBe("/blog");
+            expect(routeData.data.hash).toBe("itWorks");
+        });
         test("should return error message if two hashes are used messages", function() {
             const { errorMsg } = runCdQuery("cd blog/valid##hashieDashie");
             expect(errorMsg).toBe("You can only use one hash tag.");
@@ -92,6 +97,13 @@ describe("Commands", function() {
         test("should be able to go back from blog to root in route", function() {
             const { routeData } = runCdQuery("cd ..", modifiedRouteData);
             expect(routeData.url).toBe("/");
+        });
+
+        test("should be able to go back from blog to root and pass on hash and query", function() {
+            const { routeData } = runCdQuery("cd ../#foo?search=bar", modifiedRouteData);
+            expect(routeData.url).toBe("/");
+            expect(routeData.data.hash).toBe("foo");
+            expect(routeData.data.query).toBe("search=bar");
         });
 
         test("should be able to navigate in routes and and add new hash and query", function() {
@@ -130,6 +142,13 @@ describe("Commands", function() {
                 expect(hash).toBe("meHash");
                 expect(query).toBe("me=question");
                 expect(lastElement).toBe("subpath");
+            });
+            test("should keep hash and query and return lastElement as empty string", function() {
+                const url = "?me=question#meHash";
+                const { hash, query, lastElement } = getHashAndQuery(url);
+                expect(hash).toBe("meHash");
+                expect(query).toBe("me=question");
+                expect(lastElement).toBe("");
             });
         });
     });

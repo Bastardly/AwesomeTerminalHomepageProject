@@ -1,6 +1,6 @@
 const babelConfig = require("./babel.config.js");
 require("@babel/register")(babelConfig);
-require("core-js/stable");
+require("core-js");
 require("regenerator-runtime/runtime");
 
 module.exports = {

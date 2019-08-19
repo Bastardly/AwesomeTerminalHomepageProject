@@ -42,7 +42,6 @@ function getLowestValidIndex(hashIndex: number, queryIndex: number) {
 
 function removeHashAndQueryFromLastElement(lastElement: string, hashIndex: number, queryIndex: number): string {
     const lowestIndex = getLowestValidIndex(hashIndex, queryIndex);
-    debugger;
     if (lowestIndex === undefined) {
         return lastElement;
     }

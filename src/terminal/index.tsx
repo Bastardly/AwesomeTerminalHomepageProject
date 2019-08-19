@@ -1,4 +1,11 @@
-import React, { useContext, FormEvent, useCallback, useState, useRef, ReactNode } from "react";
+import React, {
+    useContext,
+    FormEvent,
+    useCallback,
+    useState,
+    useRef,
+    ReactNode,
+} from "react";
 import { appContext, AppContext } from "../App";
 import BreadCrumb from "../ui/BreadCrumb/Breadcrumb";
 import ErrorMsg from "../ui/ErrorMsg";
@@ -25,9 +32,15 @@ export function getFocus() {
 export default function Terminal() {
     const ref = useRef(null);
     const [inputValue, setInputValue] = useState("");
-            const [errorMsg, setErrorMsg] = useState();
+    const [errorMsg, setErrorMsg] = useState();
     const [historyIndex, changeHistoryIndex] = useState(0);
-    const { routeData, changeRouteData, content, changeContent } = useContext(appContext);
+    const {
+        routeData,
+        changeRouteData,
+        content,
+        changeContent,
+        addContent,
+    } = useContext(appContext);
 
     useEventListener("keypress", getFocus, window);
 
@@ -41,7 +54,9 @@ export default function Terminal() {
     }, [inputValue]);
 
     const updateTerminal = (newInput: string) => {
-        const terminal = document.getElementById(TerminalId) as HTMLInputElement;
+        const terminal = document.getElementById(
+            TerminalId,
+        ) as HTMLInputElement;
         terminal.value = newInput;
         setInputValue(newInput);
     };
@@ -76,6 +91,7 @@ export default function Terminal() {
             setErrorMsg,
             content,
             changeContent,
+            addContent,
         } as GoodiebagProps;
         runCommand(inputValue, goodieBag);
         updateTerminal("");

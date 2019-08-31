@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import useEventListener from "./useEventListener";
 import getRouteData, { RouteData } from "src/router/getRouteData";
 import { getFocus } from "../terminal";
-import { AddContent } from "./useHandleContent";
+import { AddComponent } from "./useHandleContent";
 
 export default function useRouter(
     routeData: RouteData,
     changeRouteData: (routeData: RouteData) => void,
-    addContent: AddContent,
+    addComponent: AddComponent,
 ): void {
     useEventListener("popstate", () => {
         const { pathname, hash, search } = window.location;
@@ -25,7 +25,7 @@ export default function useRouter(
     useEffect(() => {
         document.title = title;
         window.history.pushState(data, title, url);
-        addContent(null, routeData);
+        addComponent(null, routeData);
         getFocus();
     }, [url, hash, query, title]);
 }

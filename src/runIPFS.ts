@@ -1,20 +1,11 @@
-// @ts-nocheck
-// @ts-ignore
+import { AddComponent } from "./hooks/useHandleContent";
 
-async function runIpfs() {
-    console.log("IPFS time!");
-    const { ipfs } = window;
-    const node = await ipfs;
-    const dir = await node.files.ls("/");
-    console.log(dir);
-}
-
-export default function ipfsFunc(ipfsReady: boolean): void {
-    console.log("ipfsReady", ipfsReady);
-    if (!ipfsReady) return;
-    runIpfs();
-
-    // console.dir(dir);
+export default async function runIPFS(
+    ipfs: any,
+    addComponent: AddComponent,
+): Promise<void> {
+    const dir = await ipfs.files.ls("/");
+    console.dir(dir);
     // const file = dir.find(el => el.name === "flemse.js");
     // console.log("file", file);
     // await ipfs.files.mkdir("/coolstuff");

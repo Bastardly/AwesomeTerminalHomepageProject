@@ -53,7 +53,7 @@ export default function runCommand(query: string, goodiebag: GoodiebagProps) {
     const elements = getElements(query);
     const commandName = elements[0]; // e.g. cd, clear or ls
     const command = methods[commandName];
-    goodiebag.addContent(() =>
+    goodiebag.addComponent(() =>
         AddCommandToTerminal(commandName, query, !!command), ''
     );
     return command && command.method(elements, goodiebag);

@@ -39,7 +39,7 @@ export default function Terminal() {
         changeRouteData,
         content,
         changeContent,
-        addContent,
+        addComponent,
     } = useContext(appContext);
 
     useEventListener("keypress", getFocus, window);
@@ -91,7 +91,7 @@ export default function Terminal() {
             setErrorMsg,
             content,
             changeContent,
-            addContent,
+            addComponent,
         } as GoodiebagProps;
         runCommand(inputValue, goodieBag);
         updateTerminal("");

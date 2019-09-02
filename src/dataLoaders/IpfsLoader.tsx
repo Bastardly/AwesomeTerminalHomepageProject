@@ -17,7 +17,7 @@ export default function IpfsLoader({ addModule }: IpfsLoader) {
 
     useEffect(() => {
         const init = () => {
-            setProcentage(5);
+            setProcentage(5); // Fake it till you make it <3
             //@ts-ignore
             import("ipfs")
                 .then(async ipfs => {

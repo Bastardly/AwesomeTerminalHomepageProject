@@ -25,9 +25,9 @@ export default function InitialLoaders({
         [modules, setModule],
     );
     return (
-        <Fragment>
-            <IpfsLoader addModule={addModule} />I will start Each and every
-            loader lazily
-        </Fragment>
+        <fieldset>
+            <legend>Loading Modules</legend>
+            <IpfsLoader addModule={addModule} />
+        </fieldset>
     );
 }

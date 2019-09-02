@@ -1,6 +1,6 @@
 {
     "name": "homepage",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Awesome Terminal Homepage",
     "main": "index.tsx",
     "scripts": {
@@ -24,6 +24,7 @@
         "@babel/preset-react": "^7.0.0",
         "@babel/preset-typescript": "^7.3.3",
         "@babel/register": "^7.5.5",
+        "@babel/runtime": "^7.5.5",
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/expect": "^1.20.4",
@@ -55,7 +56,6 @@
         "webpack-dev-server": "^3.7.2"
     },
     "dependencies": {
-        "@babel/runtime": "^7.5.5",
         "ipfs": "^0.37.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6"

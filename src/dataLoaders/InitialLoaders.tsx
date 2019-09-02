@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from "react";
+import React, { useCallback } from "react";
 import IpfsLoader from "./IpfsLoader";
 
 export interface InitialLoadersProps {
@@ -8,7 +8,10 @@ export interface InitialLoadersProps {
     setModule: (modules: object) => void;
 }
 
-export type AddModuleRequirements = { moduleName: string; module: object };
+export interface AddModuleRequirements {
+    moduleName: string;
+    module: object;
+}
 export type AddModule = (el: AddModuleRequirements) => void;
 
 export default function InitialLoaders({

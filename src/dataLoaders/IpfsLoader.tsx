@@ -52,7 +52,6 @@ export default function IpfsLoader({ addModule }: IpfsLoader) {
         };
         init();
     }, [, failedAttempts, addModule, promiseState]);
-    console.log(promiseState);
 
     return (
         <LoaderText

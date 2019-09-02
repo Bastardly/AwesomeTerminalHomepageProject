@@ -25,10 +25,10 @@ Don't count on it, yet.
 
 I love React, so why not? - Don't answer that...
 
-####TypeScript:
+#### TypeScript:
 I love TypeScript. Though currently, it's still a bit loosely implemented. I really need to get those definition files made.
 
-####IPFS:
+#### IPFS:
 InterPlanetaryFileSystem - What's not to love! IPFS is an Internet protocol that aims to replace HTTP. HTTP downloads files from one computer at a time instead of fethcing from multiply nodes simultaneously.
 I really love the philosofy behind IPFS, which is why I've desided to play with it.
 Currently, it's wrongly implemented, and I'm working on a side project for IPFS that I will integrate with this using Docker. I still have no idea what I will use it for, but I'll figure it out. And it's going to be awesome!

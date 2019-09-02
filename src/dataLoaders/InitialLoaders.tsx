@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import IpfsLoader from "./IpfsLoader";
 
 export interface InitialLoadersProps {
     modules: {
@@ -30,7 +29,7 @@ export default function InitialLoaders({
     return (
         <fieldset>
             <legend>Loading Modules</legend>
-            <IpfsLoader addModule={addModule} />
+            <p>Nothing to see here. Carry on...</p>
         </fieldset>
     );
 }

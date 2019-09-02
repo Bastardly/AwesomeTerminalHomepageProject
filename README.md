@@ -12,7 +12,11 @@ I know, of the regular population, somewhere between 99.5% and 99.99% will never
 ## Does it work?
 
 I've made some basic functionality. But no content yet. Heck, I haven't even made a Dockerfile.
+
+The great list of functionality so far:
+
 `cd`: e.g. cd blog, cd ..
+
 `clear`: Bet you can guess what that does.
 
 ## Semver

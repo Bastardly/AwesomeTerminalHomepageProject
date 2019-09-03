@@ -1,19 +1,21 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
-export = InitialLoaders;
-export as namespace InitialLoaders;
+export = DataLoaders;
+export as namespace DataLoaders;
 
-declare namespace InitialLoaders {
-    interface InitialLoadersProps {
-        modules: {
-            [moduleName: string]: object;
-        };
-        setModule: (modules: object) => void;
-    }
+declare namespace DataLoaders {
+    namespace InitialLoaders {
+        interface InitialLoadersProps {
+            modules: {
+                [moduleName: string]: object;
+            };
+            setModule: (modules: object) => void;
+        }
 
-    interface AddModuleRequirements {
-        moduleName: string;
-        module: object;
+        interface AddModuleRequirements {
+            moduleName: string;
+            module: object;
+        }
+        type AddModule = (el: AddModuleRequirements) => void;
     }
-    type AddModule = (el: AddModuleRequirements) => void;
 }

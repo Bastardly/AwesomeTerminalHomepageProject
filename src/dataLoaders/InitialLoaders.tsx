@@ -4,9 +4,12 @@ import MockLoader from "./MockLoader";
 export default function InitialLoaders({
     modules,
     setModule,
-}: InitialLoaders.InitialLoadersProps) {
-    const addModule: InitialLoaders.AddModule = useCallback(
-        ({ moduleName, module }: InitialLoaders.AddModuleRequirements) => {
+}: DataLoaders.InitialLoaders.InitialLoadersProps) {
+    const addModule: DataLoaders.InitialLoaders.AddModule = useCallback(
+        ({
+            moduleName,
+            module,
+        }: DataLoaders.InitialLoaders.AddModuleRequirements) => {
             setModule({
                 ...modules,
                 [moduleName]: module,

@@ -19,10 +19,6 @@ The great list of functionality so far:
 
 `clear`: Bet you can guess what that does.
 
-## Semver
-
-Don't count on it, yet.
-
 ## Tecnologies
 
 #### React:

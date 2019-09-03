@@ -9,12 +9,12 @@ module.exports = {
         "plugin:import/typescript",
     ],
     parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 2019,
         sourceType: "module",
         ecmaFeatures: {
             jsx: true,
         },
-        project: "./tsconfig.json",
+        // project: "./tsconfig.json",
         tsconfigRootDir: "./",
     },
     settings: {
@@ -26,12 +26,13 @@ module.exports = {
         },
     },
     rules: {
-        "prettier/prettier": "error",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/indent": "off",
-        "no-console": "error",
-        "@typescript-eslint/no-unused-vars": "error",
         "import/no-cycle": "error",
         "import/no-unresolved": "off",
+        "no-console": "error",
+        "prettier/prettier": "error",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-unused-vars": "error",
     },
 };

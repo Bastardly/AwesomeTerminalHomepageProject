@@ -1,24 +1,12 @@
 import React, { useCallback } from "react";
-
-export interface InitialLoadersProps {
-    modules: {
-        [moduleName: string]: object;
-    };
-    setModule: (modules: object) => void;
-}
-
-export interface AddModuleRequirements {
-    moduleName: string;
-    module: object;
-}
-export type AddModule = (el: AddModuleRequirements) => void;
+import MockLoader from "./MockLoader";
 
 export default function InitialLoaders({
     modules,
     setModule,
-}: InitialLoadersProps) {
-    const addModule: AddModule = useCallback(
-        ({ moduleName, module }: AddModuleRequirements) => {
+}: InitialLoaders.InitialLoadersProps) {
+    const addModule: InitialLoaders.AddModule = useCallback(
+        ({ moduleName, module }: InitialLoaders.AddModuleRequirements) => {
             setModule({
                 ...modules,
                 [moduleName]: module,
@@ -29,7 +17,7 @@ export default function InitialLoaders({
     return (
         <fieldset>
             <legend>Loading Modules</legend>
-            <p>Nothing to see here. Carry on...</p>
+            <MockLoader addModule={addModule} />
         </fieldset>
     );
 }

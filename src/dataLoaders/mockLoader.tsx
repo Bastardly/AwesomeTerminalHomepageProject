@@ -6,7 +6,7 @@ interface IpfsLoader {
     addModule: InitialLoaders.AddModule;
 }
 
-export default function IpfsLoader({ addModule }: IpfsLoader) {
+export default function MockLoader({ addModule }: IpfsLoader) {
     const [progress, setProgress] = useState("");
     const [procentage, setProcentage] = useState(0);
     const [promiseState, setPromiseState] = useState<
@@ -18,33 +18,30 @@ export default function IpfsLoader({ addModule }: IpfsLoader) {
         const init = () => {
             setProcentage(5); // Fake it till you make it <3
             //@ts-ignore
-            import("ipfs")
-                .then(async ipfs => {
+            delay(500)
+                .then(async () => {
                     setProcentage(50);
-                    const node = await ipfs.create();
-                    setProgress("IPFS node created...");
+                    setProgress("Making coffee...");
                     setProcentage(80);
-                    // const dir = await ipfs.files.ls("/");
-
-                    const module = {
-                        node,
-                    };
                     await delay();
-
-                    addModule({ moduleName: "ipfs", module });
+                    const module = {
+                        whatIs: "this is nothing",
+                    };
+                    addModule({ moduleName: "MockModule", module });
                     setPromiseState("fulfilled");
                 })
+                // This will never happen on mock, but I'll make the loaders more dry in the future
                 .catch(async (e: ErrorEvent) => {
                     if (failedAttempts < 3) {
                         setFailedAttempt(failedAttempts + 1);
                         setProgress(
-                            `Loading IPFS failed. ${failedAttempts < 3 &&
+                            `Loading Mock failed. ${failedAttempts < 3 &&
                                 "Trying again"}`,
                         );
                         delay(2000);
                         init();
                     } else {
-                        setProgress(`IPFS could not be loaded. ${e.message}`);
+                        setProgress(`Mock could not be loaded. ${e.message}`);
                         setPromiseState("rejected");
                     }
                 });

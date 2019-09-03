@@ -34,5 +34,6 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/indent": "off",
         "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-var-requires": "off",
     },
 };

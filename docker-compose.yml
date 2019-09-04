@@ -10,13 +10,13 @@ services:
         # depends_on:
         #     - ipfs
         volumes:
-            - .:/var/www/nodetest
+            - .:/var/www/public
         environment:
             - NODE_ENV=development
         ports:
-            - "3000:3000"
-        networks:
-            - nodetest-network
+            - "8080:3000"
+        # networks:
+        #     - nodetest-network
     # ipfs:
     #     container_name: lalalala
     #     image: ipfs
@@ -26,7 +26,6 @@ services:
     #     restart: always
     #     networks:
     #         - nodetest-network
-
-networks:
-    nodetest-network:
-        driver: bridge
+# networks:
+#     nodetest-network:
+#         driver: bridge

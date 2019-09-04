@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import MockLoader from "./MockLoader";
+import MockLoader from "./mockLoader";
 
 export default function InitialLoaders({
     modules,

@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+    node:
+        container_name: homepage
+        image: homepage
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # depends_on:
+        #     - ipfs
+        volumes:
+            - .:/var/www/nodetest
+        environment:
+            - NODE_ENV=development
+        ports:
+            - "3000:3000"
+        networks:
+            - nodetest-network
+    # ipfs:
+    #     container_name: lalalala
+    #     image: ipfs
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile.ipfs
+    #     restart: always
+    #     networks:
+    #         - nodetest-network
+
+networks:
+    nodetest-network:
+        driver: bridge

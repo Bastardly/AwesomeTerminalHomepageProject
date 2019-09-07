@@ -36,11 +36,10 @@ module.exports = {
                 exclude: [/node_modules/],
             },
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 use: [
                     "style-loader", // creates style nodes from JS strings
                     "css-loader", // translates CSS into CommonJS
-                    "sass-loader", // compiles Sass to CSS, using Node Sass by default
                 ],
             },
         ],
@@ -66,7 +65,7 @@ module.exports = {
         open: false,
         historyApiFallback: true,
         host: "0.0.0.0",
-        port: 3000,
+        port: 3001,
     },
 
     resolve: {

@@ -1,0 +1,33 @@
+@import url(variables.css);
+@import url(terminal.css);
+@import url(form.css);
+@import url(errors.css);
+@import url(button.css);
+@import url(breadCrumb.css);
+
+html {
+    background: var(--bodyColor);
+    font-size: var(--base-font-size);
+    font-family: monospace, sans-serif;
+    color: var(--fontColor);
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1000px auto;
+}
+
+h1 {
+    font-size: 3em;
+    @media screen and (max-width: var(--break-small)) {
+        font-size: 6em;
+    }
+}
+
+#app {
+    grid-column: 2 / span 1;
+    background: var(--terminalColor);
+    padding: 18px;
+}

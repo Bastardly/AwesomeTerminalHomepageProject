@@ -1,0 +1,25 @@
+:root {
+    --base-font-size: 100%;
+
+    /* --- Break points --- */
+
+    --break-small: 411px;
+    --break-medium: 850px;
+    --break-large: 1000px;
+
+    /* --- Colors --- */
+
+    --fontColor: #23add7;
+    --breadCrumbColor: chartreuse;
+    --disabledColor: grey;
+    --errorColor: red;
+    --successColor: green;
+
+    /* Button */
+    --linkColor: hotpink;
+    --linkHoverColor: limegreen;
+
+    /* Background */
+    --bodyColor: #082832;
+    --terminalColor: #082933;
+}

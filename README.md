@@ -48,3 +48,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Source: https://opensource.org/licenses/MIT
+
+
+## Latest updates
+
+I desided to remove sass for several reasons:
+1) It's a terminal - it's not really needed.
+2) The webpack sass-loader has some heavy dependencies like node-sass, which rely on external binaries - And that will cause some problems, if you try to build the Dockerfile on a Raspberry Pi for instance. It really wasn't worth the hassel, and the solution I found really was a hack. Also the error track-record went way back, so the best decicion was to kill it off. 

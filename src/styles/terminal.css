@@ -3,9 +3,9 @@ input[type="text"] {
     border: none;
     outline: none;
     cursor: text;
-    color: $fontColor;
+    color: var(--fontColor);
     font-size: 1em;
-    caret-color: $breadCrumbColor;
+    caret-color: var(--breadCrumbColor);
     margin-top: 5px;
 }
 

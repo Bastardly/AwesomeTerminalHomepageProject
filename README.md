@@ -5,7 +5,7 @@
 
 Because it's fun!
 
-This actually startet out as just another Apple-ish website. I've even implemented SCSS, which is completely overkill for a terminal. But then the idea struck me, and I could not let it go.
+This actually startet out as just another Apple-ish website. I've had even implemented SCSS, which is completely overkill for a terminal. But then the idea struck me, and I could not let the idea of a terminal-based website go.
 
 I know, of the regular population, somewhere between 99.5% and 99.99% will never understand this website. But honestly I don't care. But this type of site isn't for them. It's more a curious approach of what I can do with a webbased terminal - Think of it as a toy.
 

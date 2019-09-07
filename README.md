@@ -53,5 +53,5 @@ Source: https://opensource.org/licenses/MIT
 ## Latest updates
 
 I desided to remove sass for several reasons:
-1) It's a terminal - it's not really needed.
+1) This page is a terminal - SCSS is not really needed.
 2) The webpack sass-loader has some heavy dependencies like node-sass, which rely on external binaries - And that will cause some problems, if you try to build the Dockerfile on a Raspberry Pi for instance. It really wasn't worth the hassel, and the solution I found really was a hack. Also the error track-record went way back, so the best decicion was to kill it off. 

@@ -52,6 +52,9 @@ Source: https://opensource.org/licenses/MIT
 
 ## Latest updates
 
-I desided to remove sass for several reasons:
+(08-09-19) I've refactored most of the typings into a definitions file, and simplified the routes system. I've completely ditches the previous RouteMap, since I found it annoying to have two places to handle your routes. Quite stupid tbh.
+Because the RouteMap has died, there aresome minor issues, like setting document title, and there is a small glitch in the breadcrumb. But both are easily fixed. But alas, the evening was short, and I've ran out of hours - bedtime is nigh...
+
+(07-09-19) I desided to remove sass for several reasons:
 1) This page is a terminal - SCSS is not really needed.
 2) The webpack sass-loader has some heavy dependencies like node-sass, which rely on external binaries - And that will cause some problems, if you try to build the Dockerfile on a Raspberry Pi for instance. It really wasn't worth the hassel, and the solution I found really was a hack. Also the error track-record went way back, so the best decicion was to kill it off. 

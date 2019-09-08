@@ -9,8 +9,13 @@ export type RouteData = {
     };
 };
 
-export default function getRouteData(pathname: string = "/", hash: string = "", query: string = ""): RouteData {
+export default function getRouteData(
+    pathname = "/",
+    hash = "",
+    query = "",
+): RouteData {
     const urlParts = pathname.split("/");
+    console.log(urlParts);
     const { title = null, url = null } = crawlRouteMap(urlParts) || {};
     return {
         title: title || "Page not found",

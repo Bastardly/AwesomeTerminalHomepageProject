@@ -16,16 +16,22 @@ const routeMap = {
             children: {
                 jolly: {
                     title: "Jolly",
-                    url: "./jolly",
+                    url: "/jolly",
                 },
             },
         },
         funny: {
             title: "funny",
-            url: "./funny",
+            url: "/funny",
         },
     },
 } as RouteProps;
+
+
+// Lav test så crawlRouteMap returnerer blog/jolly ved cd blog/jolly
+
+// Kill den her - Og styr det hele fra route
+
 
 export function crawlRouteMap(urlParts: string[]): RouteProps {
     return urlParts.reduce((routeInfo: RouteProps | void, part) => {

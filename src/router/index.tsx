@@ -18,9 +18,11 @@ function Routes(url: string) {
             return LandingPage;
         case "/blog":
             return Blog;
-        case "blog/jolly": {
+        case "/blog/jolly": {
             return Jolly;
         }
+        case "/funny":
+            return Blog;
         default:
             return NotFound;
     }

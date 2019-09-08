@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import useEventListener from "./useEventListener";
-import getRouteData, { RouteData } from "src/router/getRouteData";
+import getRouteData from "src/router/getRouteData";
 import { getFocus } from "../terminal";
-import { AddComponent } from "./useHandleContent";
 
 export default function useRouter(
-    routeData: RouteData,
-    changeRouteData: (routeData: RouteData) => void,
-    addComponent: AddComponent,
+    routeData: App.RouteData,
+    changeRouteData: (routeData: App.RouteData) => void,
+    addComponent: App.AddComponent,
 ): void {
     useEventListener("popstate", () => {
         const { pathname, hash, search } = window.location;

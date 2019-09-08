@@ -18,11 +18,20 @@ type HashQueryAndLastment = {
     lastElement: string;
 } & HashAndQuery;
 
-function handleBothHashAndQuery(lastElement: string, hashIndex: number, queryIndex: number): HashAndQuery {
+function handleBothHashAndQuery(
+    lastElement: string,
+    hashIndex: number,
+    queryIndex: number,
+): HashAndQuery {
     let hash = "";
     let query = "";
     const hashIsbeforeQuery = hashIndex < queryIndex;
-    const match = getMiddelMatch(lastElement, hashIsbeforeQuery, hashIndex, queryIndex);
+    const match = getMiddelMatch(
+        lastElement,
+        hashIsbeforeQuery,
+        hashIndex,
+        queryIndex,
+    );
     if (hashIsbeforeQuery) {
         hash = match;
         query = lastElement.split("?")[1];
@@ -40,7 +49,11 @@ function getLowestValidIndex(hashIndex: number, queryIndex: number) {
     return indexList.sort((a, b) => a - b)[0]; // e.g. return smallest
 }
 
-function removeHashAndQueryFromLastElement(lastElement: string, hashIndex: number, queryIndex: number): string {
+function removeHashAndQueryFromLastElement(
+    lastElement: string,
+    hashIndex: number,
+    queryIndex: number,
+): string {
     const lowestIndex = getLowestValidIndex(hashIndex, queryIndex);
     if (lowestIndex === undefined) {
         return lastElement;
@@ -53,14 +66,20 @@ function removeHashAndQueryFromLastElement(lastElement: string, hashIndex: numbe
 }
 
 // wakkawakka/test#hashi?search=bobbyOlsen || wakkawakka/test?search=bobbyOlsen#haaash
-export default function getHashAndQuery(lastElement: string): HashQueryAndLastment {
+export default function getHashAndQuery(
+    lastElement: string,
+): HashQueryAndLastment {
     const hashIndex = lastElement.indexOf("#");
     const queryIndex = lastElement.indexOf("?");
     const hasHash = hashIndex !== -1;
     const hasQuery = queryIndex !== -1;
-    let hash = "";
-    let query = "";
-    const isolatedLastElement = removeHashAndQueryFromLastElement(lastElement, hashIndex, queryIndex);
+    const hash = "";
+    const query = "";
+    const isolatedLastElement = removeHashAndQueryFromLastElement(
+        lastElement,
+        hashIndex,
+        queryIndex,
+    );
 
     if (!hasQuery && !hasHash) {
         return { hash, query, lastElement };

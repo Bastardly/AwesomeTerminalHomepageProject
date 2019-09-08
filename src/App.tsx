@@ -1,10 +1,7 @@
-import React, { Context, useState, createContext } from "react";
-import getRouteData, { RouteData } from "src/router/getRouteData";
+import React, { useState, createContext } from "react";
+import getRouteData from "src/router/getRouteData";
 import useRouter from "src/hooks/useRouter";
-import useHandleContent, {
-    ContentType,
-    AddComponent,
-} from "src/hooks/useHandleContent";
+import useHandleContent from "src/hooks/useHandleContent";
 import TerminalInput from "src/terminal/index";
 import ContentMapper from "./ContentMapper";
 import InitialLoaders from "./dataLoaders/InitialLoaders";
@@ -13,23 +10,15 @@ import getNow from "src/helpers/date/getNow";
 const { pathname, hash, search } = window.location;
 const initialRouteData = () => getRouteData(pathname, hash, search);
 
-export interface AppContext extends Context<any> {
-    routeData: RouteData;
-    changeRouteData: (data: RouteData) => void;
-    changeContent: (obj: ContentType) => void;
-    addComponent: AddComponent;
-    content: ContentType[];
-}
-
 export const appContext = createContext({
     changeRouteData: () => undefined,
     routeData: initialRouteData(),
     content: [],
-}) as AppContext;
+}) as App.AppContext;
 
 export default function App() {
     const [modules, setModule] = useState([]) as any[];
-    const initialContent: ContentType = {
+    const initialContent: App.ContentType = {
         Component: <InitialLoaders modules={modules} setModule={setModule} />,
         date: getNow(),
     };

@@ -4,23 +4,15 @@ import React, {
     useCallback,
     useState,
     useRef,
-    ReactNode,
 } from "react";
-import { appContext, AppContext } from "../App";
+import { appContext } from "../App";
 import BreadCrumb from "../ui/BreadCrumb/Breadcrumb";
 import ErrorMsg from "../ui/ErrorMsg";
 import useEventListener from "../hooks/useEventListener";
 import runCommand from "./commands";
 
-type StrFunc = (path: string) => void;
-
 const TerminalId = "TheInputTerminal";
 const consoleHistory: string[] = [];
-
-export interface GoodiebagProps extends AppContext {
-    setInputValue: StrFunc;
-    setErrorMsg: (msg?: string | ReactNode) => void;
-}
 
 export function getFocus() {
     const activeElement = document.activeElement;
@@ -70,7 +62,7 @@ export default function Terminal() {
             if (!!historyLenght) {
                 const newInput = consoleHistory[historyIndex] || "";
                 updateTerminal(newInput);
-                let newIndex: number = historyIndex;
+                const newIndex: number = historyIndex;
                 if (isArrorUp && historyIndex < historyLenght) {
                     changeHistoryIndex(newIndex + 1);
                 } else if (isArrorDown && historyIndex > -1) {
@@ -92,7 +84,7 @@ export default function Terminal() {
             content,
             changeContent,
             addComponent,
-        } as GoodiebagProps;
+        } as App.Terminal.GoodiebagProps;
         runCommand(inputValue, goodieBag);
         updateTerminal("");
     };

@@ -3,7 +3,7 @@ import LoaderText from "src/ui/LoaderText";
 import delay from "src/helpers/promises/delay";
 
 interface IpfsLoader {
-    addModule: DataLoaders.InitialLoaders.AddModule;
+    addModule: App.DataLoaders.InitialLoaders.AddModule;
 }
 
 export default function MockLoader({ addModule }: IpfsLoader) {

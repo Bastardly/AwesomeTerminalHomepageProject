@@ -1,34 +1,23 @@
-import React, { useState, useCallback, ReactNode, ReactElement } from "react";
-import { RouteData } from "src/router/getRouteData";
+import React, { useState, useCallback } from "react";
 import TargetRoute from "src/router/index";
 import getNow from "src/helpers/date/getNow";
 
-type ComponentType = ReactNode | Element;
-
-export type ContentType = {
-    Component: ComponentType;
-    date: number;
-    routeData?: RouteData;
-};
-
-export type AddComponent = (
-    NewContent: ComponentType,
-    routeData?: RouteData,
-) => void;
-
 type ReturnTypes = {
-    content: ContentType[];
-    addComponent: (NewContent: ComponentType, routeData?: RouteData) => void;
-    changeContent: (content: ContentType[]) => void;
+    content: App.ContentType[];
+    addComponent: (
+        NewContent: App.ComponentType,
+        routeData?: App.RouteData,
+    ) => void;
+    changeContent: (content: App.ContentType[] | []) => void;
 };
 
 function useHandleContent(
-    initialContent: ContentType,
-    routeData: RouteData,
+    initialContent: App.ContentType,
+    routeData: App.RouteData,
 ): ReturnTypes {
     const [content, changeContent] = useState([initialContent]);
     const addComponent = useCallback(
-        (NewContent: ComponentType, routeData) => {
+        (NewContent: App.ComponentType, routeData) => {
             let Component = null;
             if (routeData) {
                 Component = <TargetRoute url={routeData.url} />;

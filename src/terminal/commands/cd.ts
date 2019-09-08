@@ -1,5 +1,4 @@
-import { GoodiebagProps } from "../index";
-import getRouteData, { RouteData } from "src/router/getRouteData";
+import getRouteData from "src/router/getRouteData";
 import validatepath from "./cd/validatePath";
 import getHashAndQuery from "./cd/getHashAndQuery";
 
@@ -10,16 +9,17 @@ function stitchAbsolutePathTogether(elements: string[]) {
     }, "");
 }
 
-function createRouteDataFromAbsolutePath(path: string): RouteData {
-    let elements = path.split("/");
+function createRouteDataFromAbsolutePath(path: string): App.RouteData {
+    const elements = path.split("/");
     const lastPathElement = path.split("/").pop() || "";
-    let { hash, query, lastElement } = getHashAndQuery(lastPathElement);
+    const { hash, query, lastElement } = getHashAndQuery(lastPathElement);
+    let last = lastElement;
     elements.pop(); // removes old last element with hash and query
-    if (lastElement === "") {
+    if (last === "") {
         // For instance, if path is blog/#myHash, last element will be and empty string, therfore we will remove an extra to get the correct one.
-        lastElement = elements.pop() || "";
+        last = elements.pop() || "";
     }
-    elements.push(lastElement); // adds clean element
+    elements.push(last); // adds clean element
     const absolutePath = stitchAbsolutePathTogether(elements) || "/";
     return {
         ...getRouteData(absolutePath),
@@ -30,10 +30,10 @@ function createRouteDataFromAbsolutePath(path: string): RouteData {
     };
 }
 
-function createAbsolutePath(path: string, currentRouteData: RouteData) {
-    let currentRoute = currentRouteData.url;
-    let elements = currentRoute.split("/");
-    let pathElements = path.split("/");
+function createAbsolutePath(path: string, currentRouteData: App.RouteData) {
+    const currentRoute = currentRouteData.url;
+    const elements = currentRoute.split("/");
+    const pathElements = path.split("/");
     while (pathElements[0] === "..") {
         elements && elements.pop();
         pathElements.shift();
@@ -41,7 +41,10 @@ function createAbsolutePath(path: string, currentRouteData: RouteData) {
     return stitchAbsolutePathTogether([...elements, ...pathElements]);
 }
 
-export default function cd(elements: string[], goodiebag: GoodiebagProps) {
+export default function cd(
+    elements: string[],
+    goodiebag: App.Terminal.GoodiebagProps,
+) {
     let path = elements[1];
     if (!path) return; // E.g. change nothing
 

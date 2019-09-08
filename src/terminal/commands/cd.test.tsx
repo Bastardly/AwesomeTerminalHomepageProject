@@ -1,14 +1,13 @@
 import getHashAndQuery from "./cd/getHashAndQuery";
-import { RouteData } from "src/router/getRouteData";
 import { getElements } from "./index";
 import cd from "./cd";
 
 type RunCdQuery = {
-    routeData: RouteData;
+    routeData: App.RouteData;
     errorMsg: string;
 };
 
-const defaultRouteData: RouteData = {
+const defaultRouteData: App.RouteData = {
     url: "/",
     title: "The Title",
     data: {
@@ -17,24 +16,27 @@ const defaultRouteData: RouteData = {
     },
 };
 
-const modifiedRouteData: RouteData = {
+const modifiedRouteData: App.RouteData = {
     ...defaultRouteData,
     url: "/blog",
 };
 
-const modifiedRouteData2: RouteData = {
+const modifiedRouteData2: App.RouteData = {
     ...defaultRouteData,
     url: "/meDoNottyExisto/somethingBad/wowser#hashy?food=meLike",
 };
 
-function runCdQuery(query: string, optionalRouteData?: RouteData): RunCdQuery {
-    let routeData: RouteData = optionalRouteData || defaultRouteData;
-    let errorMsg: string = "";
+function runCdQuery(
+    query: string,
+    optionalRouteData?: App.RouteData,
+): RunCdQuery {
+    let routeData: App.RouteData = optionalRouteData || defaultRouteData;
+    let errorMsg = "";
 
     const mockGoodiebag = {
         routeData,
         setInputValue: (s: string) => s,
-        changeRouteData: (val: RouteData) => (routeData = val), // So we can test the callback result
+        changeRouteData: (val: App.RouteData) => (routeData = val), // So we can test the callback result
         setErrorMsg: (err: string) => (errorMsg = err),
     };
     const elements = getElements(query);
@@ -64,10 +66,6 @@ describe("Commands", function() {
         test("should render routeData url correctly", function() {
             const { routeData } = runCdQuery("cd blog/");
             expect(routeData.url).toBe("/blog");
-        });
-        test("should set routeData url to /404", function() {
-            const { routeData } = runCdQuery("cd meDoNeverExistLordVoldemort");
-            expect(routeData.url).toBe("/404");
         });
         test("should return invalid url error message", function() {
             const { errorMsg } = runCdQuery("cd blog#hash/invalid");
@@ -100,14 +98,20 @@ describe("Commands", function() {
         });
 
         test("should be able to go back from blog to root and pass on hash and query", function() {
-            const { routeData } = runCdQuery("cd ../#foo?search=bar", modifiedRouteData);
+            const { routeData } = runCdQuery(
+                "cd ../#foo?search=bar",
+                modifiedRouteData,
+            );
             expect(routeData.url).toBe("/");
             expect(routeData.data.hash).toBe("foo");
             expect(routeData.data.query).toBe("search=bar");
         });
 
         test("should be able to navigate in routes and and add new hash and query", function() {
-            const { routeData } = runCdQuery("cd ../../../blog#newHash?me=works", modifiedRouteData2);
+            const { routeData } = runCdQuery(
+                "cd ../../../blog#newHash?me=works",
+                modifiedRouteData2,
+            );
             expect(routeData.url).toBe("/blog");
             expect(routeData.data.hash).toBe("newHash");
             expect(routeData.data.query).toBe("me=works");

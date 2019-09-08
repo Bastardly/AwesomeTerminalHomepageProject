@@ -1,5 +1,6 @@
-import { GoodiebagProps } from '..'
-
-export default function clear(elements: string[], goodiebag: GoodiebagProps) {
-    goodiebag.changeContent([])
+export default function clear(
+    elements: string[],
+    goodiebag: App.Terminal.GoodiebagProps,
+) {
+    goodiebag.changeContent([]);
 }

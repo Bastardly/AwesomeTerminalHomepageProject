@@ -10,8 +10,10 @@ module.exports = {
     entry: "./src/index.tsx",
 
     output: {
-        filename: "[name].[chunkhash].js",
+        filename: "[name].[hash].js",
+        chunkFilename: "[name].chunk.js",
         path: path.resolve(__dirname, "dist"),
+        publicPath: "/",
     },
 
     plugins: [
@@ -63,6 +65,7 @@ module.exports = {
 
     devServer: {
         open: false,
+        hot: true,
         historyApiFallback: true,
         host: "0.0.0.0",
         port: 3001,

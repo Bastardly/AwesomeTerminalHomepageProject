@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
-import { ContentType } from "./hooks/useHandleContent";
 
 type ContentMapperProps = {
-    content: ContentType[];
+    content: App.ContentType[];
 };
 
 export default function ContentMapper({ content }: ContentMapperProps) {

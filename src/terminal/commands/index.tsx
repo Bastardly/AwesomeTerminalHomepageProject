@@ -1,11 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import cd from "./cd";
 import clear from "./clear";
-import { GoodiebagProps } from "..";
 import ContentWrapper from "../ContentWrapper";
 
 interface Method {
-    method: (elements: string[], goodiebag: GoodiebagProps) => void;
+    method: (
+        elements: string[],
+        goodiebag: App.Terminal.GoodiebagProps,
+    ) => void;
     header: string;
     description: string;
 }
@@ -48,13 +51,16 @@ function AddCommandToTerminal(
     );
 }
 
-export default function runCommand(query: string, goodiebag: GoodiebagProps) {
+export default function runCommand(
+    query: string,
+    goodiebag: App.Terminal.GoodiebagProps,
+) {
     if (!query || !query.length) return;
     const elements = getElements(query);
     const commandName = elements[0]; // e.g. cd, clear or ls
     const command = methods[commandName];
     goodiebag.addComponent(() =>
-        AddCommandToTerminal(commandName, query, !!command), ''
+        AddCommandToTerminal(commandName, query, !!command),
     );
     return command && command.method(elements, goodiebag);
 }
